@@ -8,19 +8,22 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import Skeleton from "@mui/material/Skeleton";
+import AddIcon from "@mui/icons-material/Add";
+import ListItemIcon from "@mui/material/ListItemIcon";
 
 export const CommentsBlock = ({ items, children, isLoading = true }) => {
+  console.log(items);
   return (
     <SideBlock title="Комментарии">
       <List>
-        {(isLoading ? [...Array(5)] : items).map((obj, index) => (
+        {(isLoading ? [...Array(5)] : items)?.map((obj, index) => (
           <React.Fragment key={index}>
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
                 {isLoading ? (
                   <Skeleton variant="circular" width={40} height={40} />
                 ) : (
-                  <Avatar alt={obj.user.fullName} src={obj.user.avatarUrl} />
+                  <Avatar alt={obj?.user.fullName} src={obj.user.avatarUrl} />
                 )}
               </ListItemAvatar>
               {isLoading ? (
@@ -34,6 +37,9 @@ export const CommentsBlock = ({ items, children, isLoading = true }) => {
                   secondary={obj.text}
                 />
               )}
+              {/*<ListItemIcon>*/}
+              {/*  <AddIcon />*/}
+              {/*</ListItemIcon>*/}
             </ListItem>
             <Divider variant="inset" component="li" />
           </React.Fragment>
