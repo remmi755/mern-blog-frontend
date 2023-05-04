@@ -10,9 +10,51 @@ import List from "@mui/material/List";
 import Skeleton from "@mui/material/Skeleton";
 import AddIcon from "@mui/icons-material/Add";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import { useSelector } from "react-redux";
+import axios from "../axios";
 
-export const CommentsBlock = ({ items, children, isLoading = true }) => {
+export const CommentsBlock = ({
+  data,
+  items,
+  children,
+  authorId,
+  isLoading = true,
+}) => {
+  const [value, setValue] = React.useState("");
+  // const [comments, setComments] = React.useState(items);
+  const userDataId = useSelector((state) => state.auth.data?._id);
+
+  const onSetValue = (comment) => {
+    setValue(comment);
+  };
+
+  console.log(value);
+
+  React.useEffect(() => {
+    const removeComment = async () => {
+      try {
+        const comments = items.filter((obj) => obj.text !== value);
+
+        console.log(comments);
+
+        // setComments(comments);
+
+        const fields = {
+          ...data,
+          comments: comments,
+        };
+
+        await axios.post(`comments/${data._id}`, fields);
+      } catch (err) {
+        console.warn(err);
+        alert("Ошибка при удалении комментария!");
+      }
+    };
+    removeComment();
+  }, [value]);
+
   console.log(items);
+
   return (
     <SideBlock title="Комментарии">
       <List>
@@ -35,11 +77,19 @@ export const CommentsBlock = ({ items, children, isLoading = true }) => {
                 <ListItemText
                   primary={obj.user.fullName}
                   secondary={obj.text}
+                  value={obj.text}
                 />
               )}
-              {/*<ListItemIcon>*/}
-              {/*  <AddIcon />*/}
-              {/*</ListItemIcon>*/}
+              {userDataId === authorId ? (
+                <ListItemIcon
+                  onClick={() => onSetValue(obj.text)}
+                  // onClick={() => setValue(obj.text)}
+                >
+                  <AddIcon />
+                </ListItemIcon>
+              ) : (
+                ""
+              )}
             </ListItem>
             <Divider variant="inset" component="li" />
           </React.Fragment>

@@ -12,7 +12,6 @@ export const FullPost = () => {
   const [data, setData] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
   const { id } = useParams();
-  const isEditing = Boolean(id);
 
   React.useEffect(() => {
     axios
@@ -31,8 +30,6 @@ export const FullPost = () => {
     return <Post isLoading={isLoading} isFullPost />;
   }
 
-  console.log(data.comments);
-
   return (
     <>
       <Post
@@ -49,12 +46,17 @@ export const FullPost = () => {
       >
         <ReactMarkdown children={data.text} />
       </Post>
-      <CommentsBlock items={data.comments} isLoading={false}>
+      <CommentsBlock
+        data={data}
+        items={data.comments}
+        isLoading={false}
+        authorId={data.user._id}
+      >
         <Index
           id={data._id}
           data={data}
+          setData={setData}
           isLoading={isLoading}
-          // isEditing={isEditing}
         />
       </CommentsBlock>
     </>

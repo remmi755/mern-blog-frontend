@@ -6,17 +6,17 @@ import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import axios from "../../axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchComments } from "../../redux/slices/posts";
 
-export const Index = ({ id, data, isLoading }) => {
+export const Index = ({ id, data, setData, isLoading }) => {
   const userData = useSelector((state) => state.auth.data);
+  const dispatch = useDispatch();
   const [comment, setComment] = React.useState("");
 
   const writeComment = (event) => {
     setComment(event.target.value);
   };
-
-  console.log(comment);
 
   const onSubmitComment = async () => {
     try {
@@ -37,11 +37,17 @@ export const Index = ({ id, data, isLoading }) => {
       };
 
       await axios.post(`comments/${id}`, fields);
+      setComment("");
+      // setData(data);
     } catch (err) {
       console.warn(err);
       alert("Ошибка при отправке on backend комментария!");
     }
   };
+  React.useEffect(() => {
+    dispatch(fetchComments());
+  }, [data]);
+  // console.log(data);
 
   return (
     <>
