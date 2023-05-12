@@ -43,6 +43,8 @@ export const Home = () => {
     return setValue(newValue);
   };
 
+  console.log(posts.items)
+
   return (
     <>
       <Tabs
@@ -78,7 +80,7 @@ export const Home = () => {
         </Grid>
         <Grid xs={4} item>
           <TagsBlock items={tags.items} isLoading={isTagsLoading} />
-          <CommentsBlock items={comments.items} isLoading={isCommentsLoading} />
+          <CommentsBlock comments={comments.items} isLoading={isCommentsLoading} />
         </Grid>
       </Grid>
     </>

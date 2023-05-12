@@ -21,11 +21,12 @@ const TagOne = () => {
       });
   }, [name]);
 
-  const newName = name.toUpperCase();
+  const tagName = name.toUpperCase();
+  console.log(data)
 
   return (
     <div>
-      <h1>{`#${newName}`}</h1>
+      <h1>{`#${tagName}`}</h1>
       <Stack spacing={2}>
         {data?.map((obj, index) => (
           <Item key={index}>

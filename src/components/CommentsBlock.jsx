@@ -1,6 +1,9 @@
 import React from "react";
 
 import { SideBlock } from "./SideBlock";
+
+import { stringAvatar } from './AvatarHelpers'
+
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
@@ -10,38 +13,30 @@ import List from "@mui/material/List";
 import Skeleton from "@mui/material/Skeleton";
 import AddIcon from "@mui/icons-material/Add";
 import ListItemIcon from "@mui/material/ListItemIcon";
+
 import { useSelector } from "react-redux";
 import axios from "../axios";
 
 export const CommentsBlock = ({
   data,
-  items,
+    comments,
+    setComments,
   children,
   authorId,
   isLoading = true,
 }) => {
   const [value, setValue] = React.useState("");
-  // const [comments, setComments] = React.useState(items);
   const userDataId = useSelector((state) => state.auth.data?._id);
 
-  const onSetValue = (comment) => {
-    setValue(comment);
-  };
-
-  console.log(value);
-
-  React.useEffect(() => {
-    const removeComment = async () => {
+    const removeComment = async (value) => {
       try {
-        const comments = items.filter((obj) => obj.text !== value);
-
-        console.log(comments);
-
-        // setComments(comments);
+        setValue(value);
+       const commentsNew = comments.filter((obj) => obj.text !== value);
+          setComments(commentsNew)
 
         const fields = {
           ...data,
-          comments: comments,
+          comments: commentsNew,
         };
 
         await axios.post(`comments/${data._id}`, fields);
@@ -50,22 +45,21 @@ export const CommentsBlock = ({
         alert("Ошибка при удалении комментария!");
       }
     };
-    removeComment();
-  }, [value]);
 
-  console.log(items);
+
 
   return (
-    <SideBlock title="Комментарии">
+    <SideBlock title="Comments">
       <List>
-        {(isLoading ? [...Array(5)] : items)?.map((obj, index) => (
+        {(isLoading ? [...Array(5)] : comments)?.map((obj, index) => (
           <React.Fragment key={index}>
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
                 {isLoading ? (
                   <Skeleton variant="circular" width={40} height={40} />
                 ) : (
-                  <Avatar alt={obj?.user.fullName} src={obj.user.avatarUrl} />
+                  // <Avatar alt={obj?.user.fullName} src={obj.user.avatarUrl} />
+                  <Avatar {...stringAvatar(obj.user.fullName)}  />
                 )}
               </ListItemAvatar>
               {isLoading ? (
@@ -82,8 +76,9 @@ export const CommentsBlock = ({
               )}
               {userDataId === authorId ? (
                 <ListItemIcon
-                  onClick={() => onSetValue(obj.text)}
-                  // onClick={() => setValue(obj.text)}
+                    style={{ cursor: "pointer"}}
+                  // onClick={() => onSetValue(obj.text)}
+                  onClick={() => removeComment(obj.text)}
                 >
                   <AddIcon />
                 </ListItemIcon>

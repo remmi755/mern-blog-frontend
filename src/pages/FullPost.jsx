@@ -9,15 +9,17 @@ import axios from "../axios";
 import ReactMarkdown from "react-markdown";
 
 export const FullPost = () => {
-  const [data, setData] = React.useState();
+  const [data, setData] = React.useState('');
+  const [comments, setComments] = React.useState('')
   const [isLoading, setIsLoading] = React.useState(true);
   const { id } = useParams();
-
+  
   React.useEffect(() => {
     axios
       .get(`/posts/${id}`)
       .then((res) => {
         setData(res.data);
+        setComments(res.data.comments)
         setIsLoading(false);
       })
       .catch((err) => {
@@ -29,7 +31,7 @@ export const FullPost = () => {
   if (isLoading) {
     return <Post isLoading={isLoading} isFullPost />;
   }
-
+  
   return (
     <>
       <Post
@@ -48,15 +50,16 @@ export const FullPost = () => {
       </Post>
       <CommentsBlock
         data={data}
-        items={data.comments}
+        comments={comments}
+        setComments={setComments}
         isLoading={false}
         authorId={data.user._id}
       >
         <Index
           id={data._id}
           data={data}
-          setData={setData}
-          isLoading={isLoading}
+          comments={comments}
+          setComments={setComments}
         />
       </CommentsBlock>
     </>

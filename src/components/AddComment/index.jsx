@@ -6,48 +6,45 @@ import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import axios from "../../axios";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchComments } from "../../redux/slices/posts";
+import { useSelector } from "react-redux";
 
-export const Index = ({ id, data, setData, isLoading }) => {
+export const Index = ({ id, data, comments, setComments }) => {
   const userData = useSelector((state) => state.auth.data);
-  const dispatch = useDispatch();
-  const [comment, setComment] = React.useState("");
+  const [commentAdd, setCommentAdd] = React.useState("");
 
   const writeComment = (event) => {
-    setComment(event.target.value);
+    setCommentAdd(event.target.value);
   };
 
   const onSubmitComment = async () => {
     try {
-      const user = {
-        fullName: userData.fullName,
-        avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
-      };
+      if(commentAdd) {
+        const user = {
+          fullName: userData.fullName,
+          avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
+        };
 
-      const fields = {
-        ...data,
-        comments: [
-          ...data.comments,
-          {
-            user: user,
-            text: comment,
-          },
-        ],
-      };
+        const fields = {
+          ...data,
+          comments: [
+            ...comments,
+            {
+              user: user,
+              text: commentAdd,
+            },
+          ],
+        };
 
-      await axios.post(`comments/${id}`, fields);
-      setComment("");
-      // setData(data);
+        setComments(fields.comments)
+
+        await axios.post(`comments/${id}`, fields);
+        setCommentAdd('');
+      }
     } catch (err) {
       console.warn(err);
       alert("Ошибка при отправке on backend комментария!");
     }
   };
-  React.useEffect(() => {
-    dispatch(fetchComments());
-  }, [data]);
-  // console.log(data);
 
   return (
     <>
@@ -58,7 +55,7 @@ export const Index = ({ id, data, setData, isLoading }) => {
         />
         <div className={styles.form}>
           <TextField
-            value={comment}
+            value={commentAdd}
             onChange={(e) => writeComment(e)}
             label="Написать комментарий"
             variant="outlined"
