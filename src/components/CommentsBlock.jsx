@@ -11,7 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import Skeleton from "@mui/material/Skeleton";
-import AddIcon from "@mui/icons-material/Add";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ListItemIcon from "@mui/material/ListItemIcon";
 
 import { useSelector } from "react-redux";
@@ -46,7 +46,9 @@ export const CommentsBlock = ({
       }
     };
 
-
+console.log(userDataId === authorId)
+console.log(userDataId)
+console.log(authorId)
 
   return (
     <SideBlock title="Comments">
@@ -74,13 +76,13 @@ export const CommentsBlock = ({
                   value={obj.text}
                 />
               )}
-              {userDataId === authorId ? (
+              {userDataId === authorId && userDataId !== undefined ? (
                 <ListItemIcon
                     style={{ cursor: "pointer"}}
                   // onClick={() => onSetValue(obj.text)}
                   onClick={() => removeComment(obj.text)}
                 >
-                  <AddIcon />
+                  <DeleteForeverIcon/>
                 </ListItemIcon>
               ) : (
                 ""

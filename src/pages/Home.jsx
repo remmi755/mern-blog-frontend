@@ -43,8 +43,6 @@ export const Home = () => {
     return setValue(newValue);
   };
 
-  console.log(posts.items)
-
   return (
     <>
       <Tabs

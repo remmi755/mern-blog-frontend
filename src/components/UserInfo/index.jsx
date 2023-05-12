@@ -5,7 +5,6 @@ import Avatar from "@mui/material/Avatar";
 import { stringAvatar } from '../AvatarHelpers'
 
 export const UserInfo = ({ avatarUrl, fullName, additionalText }) => {
-    console.log(fullName)
   return (
     <div className={styles.root}>
       {/*  <Avatar alt={fullName} src="https://mui.com/static/images/avatar/2.jpg" />*/}

@@ -22,7 +22,6 @@ const TagOne = () => {
   }, [name]);
 
   const tagName = name.toUpperCase();
-  console.log(data)
 
   return (
     <div>
