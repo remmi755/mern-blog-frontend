@@ -60,7 +60,6 @@ console.log(authorId)
                 {isLoading ? (
                   <Skeleton variant="circular" width={40} height={40} />
                 ) : (
-                  // <Avatar alt={obj?.user.fullName} src={obj.user.avatarUrl} />
                   <Avatar {...stringAvatar(obj.user.fullName)}  />
                 )}
               </ListItemAvatar>
@@ -79,7 +78,6 @@ console.log(authorId)
               {userDataId === authorId && userDataId !== undefined ? (
                 <ListItemIcon
                     style={{ cursor: "pointer"}}
-                  // onClick={() => onSetValue(obj.text)}
                   onClick={() => removeComment(obj.text)}
                 >
                   <DeleteForeverIcon/>
