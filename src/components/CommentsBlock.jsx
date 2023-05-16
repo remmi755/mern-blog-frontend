@@ -46,10 +46,6 @@ export const CommentsBlock = ({
       }
     };
 
-console.log(userDataId === authorId)
-console.log(userDataId)
-console.log(authorId)
-
   return (
     <SideBlock title="Comments">
       <List>
