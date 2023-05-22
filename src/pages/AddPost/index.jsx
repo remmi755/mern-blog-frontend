@@ -55,6 +55,7 @@ export const AddPost = () => {
           setTags(data.tags.join(","));
           setText(data.text);
           setImageUrl(data.imageUrl);
+          console.log(data.imageUrl)
         })
         .catch((err) => {
           console.warn(err);
@@ -130,7 +131,7 @@ export const AddPost = () => {
           </Button>
           <img
             className={styles.image}
-            src={`https://mern-blog-new.onrender.com${imageUrl}`}
+            src={`${process.env.REACT_APP_API_URL}${imageUrl}`}
             alt="Uploaded"
           />
         </>
