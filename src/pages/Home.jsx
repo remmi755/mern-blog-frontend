@@ -51,8 +51,8 @@ export const Home = () => {
         value={value}
         aria-label="basic tabs example"
       >
-        <Tab onClick={onSortByNewest} label="Новые" />
-        <Tab onClick={onSortByPopularity} label="Популярные" />
+        <Tab onClick={onSortByNewest} label="New" />
+        <Tab onClick={onSortByPopularity} label="Popular" />
       </Tabs>
       <Grid container spacing={4}>
         <Grid xs={8} item>
@@ -64,7 +64,7 @@ export const Home = () => {
                 id={obj._id}
                 title={obj.title}
                 imageUrl={
-                  obj.imageUrl ? `https://mern-blog-new.onrender.com${obj.imageUrl}` : ""
+                  obj.imageUrl ? `https://mern-blog-new.onrender.com/${obj.imageUrl}` : ""
                 }
                 user={obj.user}
                 createdAt={obj.createdAt}

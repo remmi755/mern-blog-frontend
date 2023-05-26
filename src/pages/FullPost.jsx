@@ -31,6 +31,8 @@ export const FullPost = () => {
   if (isLoading) {
     return <Post isLoading={isLoading} isFullPost />;
   }
+
+  console.log(data.imageUrl)
   
   return (
     <>
