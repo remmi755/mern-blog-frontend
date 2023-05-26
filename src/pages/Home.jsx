@@ -42,7 +42,7 @@ export const Home = () => {
   const handleChange = (event, newValue) => {
     return setValue(newValue);
   };
-
+console.log(posts)
   return (
     <>
       <Tabs

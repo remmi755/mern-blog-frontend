@@ -41,6 +41,9 @@ export const Post = ({
     }
   };
 
+  console.log(imageUrl)
+  
+
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
       {isEditablePost && (
