@@ -25,7 +25,6 @@ export const Post = ({
   children,
   isFullPost,
   isLoading,
-  isEditable,
 }) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);
