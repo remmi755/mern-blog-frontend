@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 import { SideBlock } from "./SideBlock";
 
-export const TagsBlock = ({ items, isLoading = true }) => {
+export const TagsBlock = ({ items, isLoading = true, isEditable }) => {
   return (
     <SideBlock title="Tags">
       <List>

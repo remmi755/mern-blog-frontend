@@ -42,7 +42,7 @@ export const Home = () => {
   const handleChange = (event, newValue) => {
     return setValue(newValue);
   };
-console.log(posts)
+  
   return (
     <>
       <Tabs
@@ -77,7 +77,9 @@ console.log(posts)
           )}
         </Grid>
         <Grid xs={4} item>
-          <TagsBlock items={tags.items} isLoading={isTagsLoading} />
+          <TagsBlock items={tags.items}
+                     isLoading={isTagsLoading}
+          />
           <CommentsBlock comments={comments.items} isLoading={isCommentsLoading} />
         </Grid>
       </Grid>
