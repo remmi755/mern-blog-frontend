@@ -101,7 +101,7 @@ export const AddPost = () => {
       navigate(`/posts/${_id}`);
     } catch (err) {
       console.warn(err);
-      alert("Ошибка при создании статьи!");
+      alert("Error creating article!");
     }
   };
 
@@ -112,7 +112,7 @@ export const AddPost = () => {
         variant="outlined"
         size="large"
       >
-        Загрузить превью
+          Download preview
       </Button>
       <input
         ref={inputFileRef}
@@ -127,7 +127,7 @@ export const AddPost = () => {
             color="error"
             onClick={onClickRemoveImage}
           >
-            Удалить
+            Delete
           </Button>
           <img
             className={styles.image}
@@ -143,7 +143,7 @@ export const AddPost = () => {
         onChange={(e) => setTitle(e.target.value)}
         classes={{ root: styles.title }}
         variant="standard"
-        placeholder="Заголовок статьи..."
+        placeholder="Article title..."
         fullWidth
       />
       <TextField
@@ -151,7 +151,7 @@ export const AddPost = () => {
         onChange={(e) => setTags(e.target.value.trim())}
         classes={{ root: styles.tags }}
         variant="standard"
-        placeholder="Тэги"
+        placeholder="Tags"
         fullWidth
       />
       <SimpleMDE
@@ -162,10 +162,10 @@ export const AddPost = () => {
       />
       <div className={styles.buttons}>
         <Button onClick={onSubmit} size="large" variant="contained">
-          {isEditing ? "Сохранить" : "Опубликовать"}
+          {isEditing ? "Save" : "Publish"}
         </Button>
         <a href="/">
-          <Button size="large">Отмена</Button>
+          <Button size="large">Cancel</Button>
         </a>
       </div>
     </Paper>

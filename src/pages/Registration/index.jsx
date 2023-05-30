@@ -18,12 +18,11 @@ export const Registration = () => {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
-      fullName: "Vasya Pupkin",
-      email: "vasya@gmail.com",
+      fullName: "Bill Angel",
+      email: "bill@gmail.com",
       password: "3232",
     },
     mode: "onChange",
@@ -32,7 +31,7 @@ export const Registration = () => {
   const onSubmit = async (values) => {
     const data = await dispatch(fetchRegister(values));
     if (!data.payload) {
-      alert("Не удалось зарегистрироваться!");
+      alert("Failed to register!");
     }
 
     if ("token" in data.payload) {
@@ -47,7 +46,7 @@ export const Registration = () => {
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">
-        Создание аккаунта
+        Create an account
       </Typography>
       <div className={styles.avatar}>
         <Avatar sx={{ width: 100, height: 100 }} />
@@ -55,10 +54,10 @@ export const Registration = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
           className={styles.field}
-          label="Полное имя"
+          label="Full name"
           error={Boolean(errors.fullName?.message)}
           helperText={errors.fullName?.message}
-          {...register("fullName", { required: "Укажите полное имя" })}
+          {...register("fullName", { required: "Enter full name" })}
           fullWidth
         />
         <TextField
@@ -68,16 +67,16 @@ export const Registration = () => {
           type="email"
           error={Boolean(errors.email?.message)}
           helperText={errors.email?.message}
-          {...register("email", { required: "Укажите почту" })}
+          {...register("email", { required: "Enter a email" })}
         />
         <TextField
           className={styles.field}
-          label="Пароль"
+          label="Password"
           fullWidth
           type="password"
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
-          {...register("password", { required: "Укажите пароль" })}
+          {...register("password", { required: "Enter a password" })}
         />
         <Button
           disabled={!isValid}
@@ -86,7 +85,7 @@ export const Registration = () => {
           variant="contained"
           fullWidth
         >
-          Зарегистрироваться
+          Register
         </Button>
       </form>
     </Paper>

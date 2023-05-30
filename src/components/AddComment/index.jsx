@@ -42,7 +42,7 @@ export const Index = ({ id, data, comments, setComments }) => {
       }
     } catch (err) {
       console.warn(err);
-      alert("Ошибка при отправке on backend комментария!");
+      alert("Error sending on backend comment!");
     }
   };
 
@@ -57,14 +57,14 @@ export const Index = ({ id, data, comments, setComments }) => {
           <TextField
             value={commentAdd}
             onChange={(e) => writeComment(e)}
-            label="Написать комментарий"
+            label="Write a comment"
             variant="outlined"
             maxRows={10}
             multiline
             fullWidth
           />
           <Button onClick={onSubmitComment} variant="contained">
-            Отправить
+            Send
           </Button>
         </div>
       </div>

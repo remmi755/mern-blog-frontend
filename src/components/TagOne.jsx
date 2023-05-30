@@ -17,7 +17,7 @@ const TagOne = () => {
       })
       .catch((err) => {
         console.warn(err);
-        alert("Ошибка при получении одного тега ");
+        alert("Error getting one tag");
       });
   }, [name]);
 

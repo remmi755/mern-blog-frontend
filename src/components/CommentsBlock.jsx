@@ -42,7 +42,7 @@ export const CommentsBlock = ({
         await axios.post(`comments/${data._id}`, fields);
       } catch (err) {
         console.warn(err);
-        alert("Ошибка при удалении комментария!");
+        alert("Error when deleting a comment!");
       }
     };
 
