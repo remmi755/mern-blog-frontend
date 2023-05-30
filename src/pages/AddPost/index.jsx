@@ -148,7 +148,7 @@ export const AddPost = () => {
       />
       <TextField
         value={tags}
-        onChange={(e) => setTags(e.target.value)}
+        onChange={(e) => setTags(e.target.value.trim())}
         classes={{ root: styles.tags }}
         variant="standard"
         placeholder="Тэги"
