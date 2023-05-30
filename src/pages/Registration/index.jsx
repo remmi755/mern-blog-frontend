@@ -46,7 +46,7 @@ export const Registration = () => {
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">
-        Create an account
+        Let's create your account
       </Typography>
       <div className={styles.avatar}>
         <Avatar sx={{ width: 100, height: 100 }} />
@@ -85,7 +85,7 @@ export const Registration = () => {
           variant="contained"
           fullWidth
         >
-          Register
+          Create your account
         </Button>
       </form>
     </Paper>
