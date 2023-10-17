@@ -45,7 +45,7 @@ export const FullPost = () => {
         user={data.user}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
-        commentsCount={5}
+        commentsCount={data.comments.length}
         tags={data.tags}
         isEditable
         isFullPost
