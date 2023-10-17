@@ -42,7 +42,7 @@ export const Home = () => {
   const handleChange = (event, newValue) => {
     return setValue(newValue);
   };
-  
+
   return (
     <>
       <Tabs
@@ -64,7 +64,9 @@ export const Home = () => {
                 id={obj._id}
                 title={obj.title}
                 imageUrl={
-                  obj.imageUrl ? `https://mern-blog-new.onrender.com${obj.imageUrl}` : ""
+                  obj.imageUrl
+                    ? `https://mern-blog-hpx8.onrender.com${obj.imageUrl}`
+                    : ""
                 }
                 user={obj.user}
                 createdAt={obj.createdAt}
@@ -77,10 +79,11 @@ export const Home = () => {
           )}
         </Grid>
         <Grid xs={4} item>
-          <TagsBlock items={tags.items}
-                     isLoading={isTagsLoading}
+          <TagsBlock items={tags.items} isLoading={isTagsLoading} />
+          <CommentsBlock
+            comments={comments.items}
+            isLoading={isCommentsLoading}
           />
-          <CommentsBlock comments={comments.items} isLoading={isCommentsLoading} />
         </Grid>
       </Grid>
     </>

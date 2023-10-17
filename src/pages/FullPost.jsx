@@ -9,17 +9,17 @@ import axios from "../axios";
 import ReactMarkdown from "react-markdown";
 
 export const FullPost = () => {
-  const [data, setData] = React.useState('');
-  const [comments, setComments] = React.useState('')
+  const [data, setData] = React.useState("");
+  const [comments, setComments] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(true);
   const { id } = useParams();
-  
+
   React.useEffect(() => {
     axios
       .get(`/posts/${id}`)
       .then((res) => {
         setData(res.data);
-        setComments(res.data.comments)
+        setComments(res.data.comments);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -31,17 +31,21 @@ export const FullPost = () => {
   if (isLoading) {
     return <Post isLoading={isLoading} isFullPost />;
   }
-  
+
   return (
     <>
       <Post
         id={data._id}
         title={data.title}
-        imageUrl={data.imageUrl ? `https://mern-blog-new.onrender.com${data.imageUrl}` : ""}
+        imageUrl={
+          data.imageUrl
+            ? `https://mern-blog-hpx8.onrender.com${data.imageUrl}`
+            : ""
+        }
         user={data.user}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
-        commentsCount={3}
+        commentsCount={5}
         tags={data.tags}
         isEditable
         isFullPost

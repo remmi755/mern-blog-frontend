@@ -34,7 +34,9 @@ const TagOne = () => {
               id={obj._id}
               title={obj.title}
               imageUrl={
-                obj.imageUrl ? `https://mern-blog-new.onrender.com${obj.imageUrl}` : ""
+                obj.imageUrl
+                  ? `https://mern-blog-hpx8.onrender.com${obj.imageUrl}`
+                  : ""
               }
               user={obj.user}
               createdAt={obj.createdAt}

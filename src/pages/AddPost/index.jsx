@@ -55,7 +55,7 @@ export const AddPost = () => {
           setTags(data.tags.join(","));
           setText(data.text);
           setImageUrl(data.imageUrl);
-          console.log(data.imageUrl)
+          console.log(data.imageUrl);
         })
         .catch((err) => {
           console.warn(err);
@@ -112,7 +112,7 @@ export const AddPost = () => {
         variant="outlined"
         size="large"
       >
-          Download preview
+        Download preview
       </Button>
       <input
         ref={inputFileRef}
@@ -131,7 +131,7 @@ export const AddPost = () => {
           </Button>
           <img
             className={styles.image}
-            src={`https://mern-blog-new.onrender.com${imageUrl}`}
+            src={`https://mern-blog-hpx8.onrender.com${imageUrl}`}
             alt="Uploaded"
           />
         </>
