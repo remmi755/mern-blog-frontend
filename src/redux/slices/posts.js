@@ -3,6 +3,7 @@ import axios from "../../axios";
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const { data } = await axios.get("/posts");
+  console.log("Fetched posts:", data);
   return data;
 });
 
@@ -67,6 +68,7 @@ const postsSlice = createSlice({
     [fetchPosts.fulfilled]: (state, action) => {
       state.posts.items = action.payload;
       state.posts.status = "loaded";
+      console.log("Updated posts state:", state.items);
     },
     [fetchPosts.rejected]: (state) => {
       state.posts.items = [];

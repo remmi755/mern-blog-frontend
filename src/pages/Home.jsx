@@ -43,6 +43,11 @@ export const Home = () => {
     return setValue(newValue);
   };
 
+  console.log(posts);
+  console.log(tags);
+  console.log(comments);
+
+  // console.log(isPostLoading);
   return (
     <>
       <Tabs
@@ -56,18 +61,19 @@ export const Home = () => {
       </Tabs>
       <Grid container spacing={4}>
         <Grid xs={8} item>
-          {(isPostLoading ? [...Array(5)] : posts.items).map((obj, index) =>
-            isPostLoading ? (
-              <Post key={index} isLoading={true} />
-            ) : (
+          {posts &&
+            posts.items.map((obj, index) => (
               <Post
+                key={index}
                 id={obj._id}
                 title={obj.title}
                 imageUrl={
-                  obj.imageUrl
-                    ? `https://mern-blog-hpx8.onrender.com${obj.imageUrl}`
-                    : ""
+                  obj.imageUrl ? `http://localhost:4444${obj.imageUrl}` : ""
                 }
+                // imageUrl={
+                //   obj.imageUrl ? `http://localhost:4444${obj.imageUrl}` : ""
+                // }
+                // imageUrl={obj.imageUrl ? obj.imageUrl : ""}
                 user={obj.user}
                 createdAt={obj.createdAt}
                 viewsCount={obj.viewsCount}
@@ -75,8 +81,26 @@ export const Home = () => {
                 tags={obj.tags}
                 isEditable={userData?._id === obj.user?._id}
               />
-            )
-          )}
+            ))}
+
+          {/*{(isPostLoading ? [...Array(5)] : posts.items).map((obj, index) =>*/}
+          {/*  isPostLoading ? (*/}
+          {/*    <Post key={index} isLoading={true} />*/}
+          {/*  ) : (*/}
+          {/*    <Post*/}
+          {/*      key={index}*/}
+          {/*      id={obj._id}*/}
+          {/*      title={obj.title}*/}
+          {/*      imageUrl={obj.imageUrl ? "obj.imageUrl" : ""}*/}
+          {/*      user={obj.user}*/}
+          {/*      createdAt={obj.createdAt}*/}
+          {/*      viewsCount={obj.viewsCount}*/}
+          {/*      commentsCount={obj.comments.length}*/}
+          {/*      tags={obj.tags}*/}
+          {/*      isEditable={userData?._id === obj.user?._id}*/}
+          {/*    />*/}
+          {/*  )*/}
+          {/*)}*/}
         </Grid>
         <Grid xs={4} item>
           <TagsBlock items={tags.items} isLoading={isTagsLoading} />

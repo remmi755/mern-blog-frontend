@@ -17,11 +17,11 @@ export const TagsBlock = ({ items, isLoading = true, isEditable }) => {
     <SideBlock title="Tags">
       <List>
         {(isLoading ? [...Array(5)] : items).map((name, i) => (
-          <Link
+          <Link key={i}
             style={{ textDecoration: "none", color: "black" }}
             to={`/tags/${name}`}
           >
-            <ListItem key={i} disablePadding>
+            <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <TagIcon />
